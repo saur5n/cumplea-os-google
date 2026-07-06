@@ -3,10 +3,11 @@ Archivo configuración:
 
 Lo normal es tener un Google Sheets (en tu Drive compartido o en "Mi unidad") con este formato:
 
-Nombre	    Teléfono	      Cumpleaños
------------------------------------------
-Juan	      34600111222	    06/07/1998
-María	      34612345678	    15/08/1995
+Nombre	      Teléfono	      Cumpleaños	    Mensaje
+---------------------------------------------------------------------------------------
+Juan	        34600111222	    06/07/1998	    ¡Feliz cumpleaños, Juan! 🎉
+María	        34612345678	    15/08/1995	    ¡Que tengas un día maravilloso, María! 🥳
+Pedro	        34698765432	    01/12/1990	    ¡Muchas felicidades! 🎂
   
   
 Zona horaria:
