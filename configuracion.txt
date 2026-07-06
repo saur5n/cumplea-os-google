@@ -1,0 +1,36 @@
+Archivo configuración:
+********************************
+
+Lo normal es tener un Google Sheets (en tu Drive compartido o en "Mi unidad") con este formato:
+
+Nombre	    Teléfono	      Cumpleaños
+-----------------------------------------
+Juan	      34600111222	    06/07/1998
+María	      34612345678	    15/08/1995
+  
+  
+Zona horaria:
+********************************
+
+1. Abre tu proyecto de Google Apps Script.
+2. En el menú izquierdo, pulsa Desencadenadores (icono del reloj ⏰).
+3. Pulsa + Añadir desencadenador.
+
+Configura:
+
+Opción	              Valor
+-----------------------------------------
+Función	              felicitarCumples
+Implementación	      Head
+Origen del evento	    Basado en el tiempo
+Tipo	                Temporizador diario
+Hora	                08:00 - 09:00
+
+Apps Script no garantiza las 08:00:00 exactas. La ejecutará en algún momento dentro del intervalo 08:00–09:00.
+
+Zona horaria
+
+Ve a:
+⚙️ Configuración del proyecto → Zona horaria → selecciona Europe/Madrid (o la que corresponda).
+
+Con eso, todos los días entre las 08:00 y las 09:00 ejecutará automáticamente felicitarCumples(). 🚀
