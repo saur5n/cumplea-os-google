@@ -1,0 +1,43 @@
+/** Nombre	Teléfono	Cumpleaños */
+
+function felicitarCumples() {
+
+  const idHoja = "ID_DEL_GOOGLE_SHEETS"; // El ID del archivo
+  const hoja = SpreadsheetApp.openById(idHoja).getSheetByName("Cumples");
+
+  const datos = hoja.getDataRange().getValues();
+
+  const hoy = new Date();
+  const diaHoy = hoy.getDate();
+  const mesHoy = hoy.getMonth();
+
+  for (let i = 1; i < datos.length; i++) {
+
+    const nombre = datos[i][0];
+    const telefono = datos[i][1];
+    const fecha = new Date(datos[i][2]);
+
+    if (fecha.getDate() == diaHoy && fecha.getMonth() == mesHoy) {
+
+      const mensaje = `🎉 ¡Feliz cumpleaños, ${nombre}! Espero que pases un día increíble. ¡Disfrútalo mucho! 🥳`;
+
+      enviarWhatsApp(telefono, mensaje);
+
+    }
+  }
+}
+
+function enviarWhatsApp(telefono, mensaje) {
+
+  const apiKey = "TU_API_KEY";
+
+  const url =
+    "https://api.callmebot.com/whatsapp.php?phone=" +
+    telefono +
+    "&text=" +
+    encodeURIComponent(mensaje) +
+    "&apikey=" +
+    apiKey;
+
+  UrlFetchApp.fetch(url);
+}
