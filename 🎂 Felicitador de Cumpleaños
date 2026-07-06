@@ -1,7 +1,7 @@
 function felicitarCumples() {
 
   const idHoja = "ID_DEL_GOOGLE_SHEETS";
-  const hoja = SpreadsheetApp.openById(idHoja).getSheetByName("Cumples");
+  const hoja = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("Hoja1");  //como no tengo ninguna pestaña, la pestaña por defecto es Hoja1
 
   const datos = hoja.getDataRange().getValues();
 
