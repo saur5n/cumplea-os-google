@@ -1,8 +1,6 @@
-/** Nombre	Teléfono	Cumpleaños */
-
 function felicitarCumples() {
 
-  const idHoja = "ID_DEL_GOOGLE_SHEETS"; // El ID del archivo
+  const idHoja = "ID_DEL_GOOGLE_SHEETS";
   const hoja = SpreadsheetApp.openById(idHoja).getSheetByName("Cumples");
 
   const datos = hoja.getDataRange().getValues();
@@ -16,13 +14,10 @@ function felicitarCumples() {
     const nombre = datos[i][0];
     const telefono = datos[i][1];
     const fecha = new Date(datos[i][2]);
+    const mensaje = datos[i][3];
 
     if (fecha.getDate() == diaHoy && fecha.getMonth() == mesHoy) {
-
-      const mensaje = `🎉 ¡Feliz cumpleaños, ${nombre}! Espero que pases un día increíble. ¡Disfrútalo mucho! 🥳`;
-
       enviarWhatsApp(telefono, mensaje);
-
     }
   }
 }
