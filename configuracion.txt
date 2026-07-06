@@ -2,6 +2,9 @@ Archivo configuración:
 ********************************
 
 Lo normal es tener un Google Sheets (en tu Drive compartido o en "Mi unidad") con este formato:
+Si la URL es : https://docs.google.com/spreadsheets/d/1AbCdEfGhIJkLmNoPqRsTuVwXyZ1234567890/edit#gid=0
+El ID es: 1AbCdEfGhIJkLmNoPqRsTuVwXyZ1234567890
+const idHoja = "1AbCdEfGhIJkLmNoPqRsTuVwXyZ1234567890";
 
 Nombre	      Teléfono	      Cumpleaños	    Mensaje
 ---------------------------------------------------------------------------------------
