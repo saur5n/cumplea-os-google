@@ -1,27 +1,27 @@
 function felicitarCumples() {
-  // 1. Obtenemos la hoja activa directamente
+  // 1. Obtenemos la hoja activa directamente (debe llamarse Hoja1)
   const hoja = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("Hoja1"); 
   const datos = hoja.getDataRange().getValues();
 
   const hoy = new Date();
   const diaHoy = hoy.getDate();
-  const mesHoy = hoy.getMonth(); // Recuerda que los meses van de 0 (enero) a 11 (diciembre)
+  const mesHoy = hoy.getMonth(); // Los meses van de 0 (enero) a 11 (diciembre)
 
-  // Empezamos en i = 1 para saltarnos la fila de encabezados
+  // Empezamos en i = 1 para saltarnos la fila de cabeceras (Nombre, Teléfono, etc.)
   for (let i = 1; i < datos.length; i++) {
     const nombre = datos[i][0];
     const telefono = datos[i][1];
     const fechaCelda = datos[i][2];
     const mensajePersonalizado = datos[i][3];
 
-    // Verificamos que la celda de la fecha no esté vacía antes de procesarla
+    // Verificamos que la celda de la fecha no esté vacía
     if (fechaCelda) {
       const fecha = new Date(fechaCelda);
       
-      // Validamos que sea una fecha real para evitar errores en el código
+      // Validamos que sea una fecha real para evitar que el script falle
       if (!isNaN(fecha.getTime())) { 
         if (fecha.getDate() === diaHoy && fecha.getMonth() === mesHoy) {
-          // Reemplazamos los marcadores opcionales en tu mensaje (ej: si escribes "Feliz cumple [nombre]")
+          // Si pones "[nombre]" en tu plantilla de mensaje en Sheets, se cambiará por el nombre real
           const mensajeFinal = mensajePersonalizado.replace("[nombre]", nombre);
           
           Logger.log("Enviando felicitación a " + nombre);
@@ -33,10 +33,9 @@ function felicitarCumples() {
 }
 
 function enviarWhatsApp(telefono, mensaje) {
-  const apiKey = "TU_API_KEY"; // Recuerda cambiar esto por tu API Key real de CallMeBot
+  const apiKey = "TU_API_KEY"; // <-- REEMPLAZA ESTO CON TU API KEY REAL
   
-  // Limpiamos el teléfono por si Google Sheets lo guardó con espacios, guiones o un "+"
-  // CallMeBot suele requerir el formato internacional puro (ej: 34600000000)
+  // Limpiamos el teléfono por si tiene espacios, guiones o un "+"
   const telefonoLimpio = String(telefono).replace(/[^0-9]/g, "");
 
   const url = "https://api.callmebot.com/whatsapp.php?phone=" +
@@ -52,3 +51,14 @@ function enviarWhatsApp(telefono, mensaje) {
     Logger.log("Error al enviar a " + telefonoLimpio + ": " + error.toString());
   }
 }
+
+/*
++-----------------+---------------+----------------------+----------------------------------------------+
+| A (Columna 1)   | B (Columna 2) | C (Columna 3)        | D (Columna 4)                                |
++-----------------+---------------+----------------------+----------------------------------------------+
+| Nombre          | Teléfono      | Fecha Nacimiento     | Mensaje                                      |
++-----------------+---------------+----------------------+----------------------------------------------+
+| Juan            | 34600000000   | 1995-07-16           | ¡Feliz cumpleaños, [nombre]! Pásalo genial.   |
+| María           | 34611111111   | 1998-10-24           | ¡Muchas felicidades [nombre]! Un abrazo.     |
++-----------------+---------------+----------------------+----------------------------------------------+
+*/
